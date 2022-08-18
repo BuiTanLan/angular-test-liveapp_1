@@ -11,18 +11,24 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     //this.socketService.initSocket();
     this.socketService.listenEvent('View.Count.Changed').subscribe(res => {
-      console.log(res);
+      console.log('Change', res);
     })
     this.socketService.listenEvent('TMT.LiveApp.EventBus.Distributed.CommentCreateEto').subscribe(res => {
       console.log(res);
     })
-    this.socketService.listenEvent('TMT.LiveApp.EventBus.Distributed.CommentCreateEto').subscribe(res => {
+    this.socketService.listenEvent('tmt.notification.eventbus.distributed.notifyeto').subscribe(res => {
+      console.log(res);
+    })
+    this.socketService.listenEvent('message.created').subscribe(res => {
       console.log(res);
     })
     this.socketService.listenEvent('TMT.LiveApp.EventBus.Distributed.CommentUpdateEto').subscribe(res => {
       console.log(res);
     })
-    this.socketService.listenEvent('TMT.LiveApp.EventBus.Distributed.CommentDeleteEto').subscribe(res => {
+    this.socketService.listenEvent('Live.User.Join').subscribe(res => {
+      console.log(res);
+    })
+    this.socketService.listenEvent('TMT.LiveApp.EventBus.Distributed.PostCreateEto').subscribe(res => {
       console.log(res);
     })
   }
@@ -32,12 +38,12 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   increase() {
-    this.socketService.emitEvent('Post.Joined', 1729281133428783)
+    this.socketService.emitEvent('Post.Joined', 7524197077516289)
 
   }
 
   decrease() {
-    this.socketService.emitEvent('Post.Left', 1729281133428783)
+    this.socketService.emitEvent('Post.Left', 7524197077516289)
 
   }
 }
